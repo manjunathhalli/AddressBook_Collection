@@ -148,9 +148,27 @@ public class AddressBookImplementation implements IAddressBook {
      */
     @Override
     public void viewByCity(String city) {
-        List listPerson = (List) ((Collection<Person>) listPerson).stream().filter(person1 -> person1.getCity().equalsIgnoreCase(city).collectors.toList());
+        Collection<Person> list;
+        List people = (List) personList.stream().filter(person1 -> person1.getFirstName().equalsIgnoreCase(city))
+                .collect(Collectors.toList());
+
         for (Person person : personList) {
             System.out.println(person);
+        }
+    }
+
+    /**
+     * Uc10: count by city or state
+     */
+
+    @Override
+    public void searchPersonInCity(String firstName) {
+        Collection<Person> list;
+        List people = (List) personList.stream().filter(person1 -> person1.getFirstName().equalsIgnoreCase(firstName))
+                .collect(Collectors.toList());
+
+        for (Person person : personList) {
+            System.out.println(person.getFirstName() + "---->" + person.getCity());
         }
     }
 
@@ -163,7 +181,7 @@ public class AddressBookImplementation implements IAddressBook {
             Scanner scanner = new Scanner(System.in);
             System.out.println(
                     "1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete" + "\n" + "5.Add MultiplePerson"
-                            + "\n" + "6.SearchByName" + "\n" + "7.SearchByState" + "\n" + "8.viewByCity");
+                            + "\n" + "6.SearchByName" + "\n" + "7.SearchByState" + "\n" + "8.viewByCity" + "\n" + "SearchPersonInCity");
             Scanner option = new Scanner(System.in);
 
             switch (option.nextInt()) {
@@ -200,6 +218,12 @@ public class AddressBookImplementation implements IAddressBook {
                     System.out.println("Enter the City");
                     String city = scanner.nextLine();
                     addressBookImplementation.viewByCity(city);
+                    break;
+
+                case 9:
+                    System.out.println("Enter name");
+                    String name1 = scanner.nextLine();
+                    addressBookImplementation.searchPersonInCity(name1);
                     break;
                 default:
                     System.out.println();
