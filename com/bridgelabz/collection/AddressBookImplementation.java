@@ -92,6 +92,19 @@ public class AddressBookImplementation implements IAddressBook {
         }
     }
 
+    /**
+     * Uc5: Ability to add multiple person to Address Book
+     */
+
+    @Override
+    public void addMultiplePerson() {
+        System.out.println("Enter a person Name:");
+        String firstName = scanner.nextLine();
+        for (int i = 0; i < personList.size(); i++) {
+            Person person = personList.get(i);
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to the Address Book Problem");
         AddressBookImplementation adressBookImplementation = new AddressBookImplementation();
@@ -99,7 +112,7 @@ public class AddressBookImplementation implements IAddressBook {
 
         while (condition == true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete");
+            System.out.println("1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete" + "\n" + "5.Add MultiplePerson");
             Scanner option = new Scanner(System.in);
 
             switch (option.nextInt()) {
@@ -118,6 +131,9 @@ public class AddressBookImplementation implements IAddressBook {
                     System.out.println("Enter the Name of the person do you wants to delete");
                     String name = scanner.nextLine();
                     adressBookImplementation.delete(name);
+                    break;
+                case 5:
+                    adressBookImplementation.addMultiplePerson();
                     break;
                 default:
                     System.out.println();
