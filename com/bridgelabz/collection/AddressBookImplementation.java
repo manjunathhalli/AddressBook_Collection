@@ -1,10 +1,11 @@
 package com.bridgelabz.collection;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBookImplementation implements IAddressBook {
-
 
     Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<Person>();
@@ -105,13 +106,26 @@ public class AddressBookImplementation implements IAddressBook {
             Person person = personList.get(i);
 
             /**
-             * Uc6: Ability to add multiple adress book to the system each adress book has unique name
+             * Uc6: Ability to add multiple adress book to the system each adress book has
+             * unique name
              */
 
             if (personList.get(i).getFirstName().equals(firstName)) {
                 System.out.println("Duplicate");
             }
         }
+    }
+
+    /**
+     * Uc7: Ability to ensure there is no Duplicate Entry of the same Person in a
+     * particular Address Book.
+     */
+
+    @Override
+    public void searchPersonByName(String firstname) {
+        List listPerson = (List) personList.stream()
+                .filter(person1 -> person1.getFirstName().equalsIgnoreCase(firstname)).collect(Collectors.toList());
+        personList.stream().forEach(System.out::println);
     }
 
     public static void main(String[] args) {
@@ -121,8 +135,8 @@ public class AddressBookImplementation implements IAddressBook {
 
         while (condition == true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println(
-                    "1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete" + "\n" + "5.Add MultiplePerson");
+            System.out.println("1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete" + "\n"
+                    + "5.Add MultiplePerson" + "\n" + "6.SearchByName");
             Scanner option = new Scanner(System.in);
 
             switch (option.nextInt()) {
@@ -144,6 +158,11 @@ public class AddressBookImplementation implements IAddressBook {
                     break;
                 case 5:
                     adressBookImplementation.addMultiplePerson();
+                    break;
+                case 6:
+                    System.out.println("Enter a Name");
+                    String firstName1 = scanner.nextLine();
+                    adressBookImplementation.searchPersonByName(firstName1);
                     break;
                 default:
                     System.out.println();
