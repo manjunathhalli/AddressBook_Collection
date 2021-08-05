@@ -78,6 +78,20 @@ public class AddressBookImplementation implements IAddressBook {
 
     }
 
+    /**
+     * Uc4: Ability to delete a person using persons name
+     */
+
+    @Override
+    public void delete(String name) {
+        for (int i = 0; i < personList.size(); i++) {
+            if (personList.get(i).getFirstName().equals(name)) {
+                Person person = personList.get(i);
+                personList.remove(person);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to the Address Book Problem");
         AddressBookImplementation adressBookImplementation = new AddressBookImplementation();
@@ -85,7 +99,7 @@ public class AddressBookImplementation implements IAddressBook {
 
         while (condition == true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("1.add" + "\n" + "2.Display" + "\n" + "3.Edit");
+            System.out.println("1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete");
             Scanner option = new Scanner(System.in);
 
             switch (option.nextInt()) {
@@ -99,6 +113,11 @@ public class AddressBookImplementation implements IAddressBook {
                     System.out.println("Enter the firstName:");
                     String firstName = scanner.nextLine();
                     adressBookImplementation.edit(firstName);
+                    break;
+                case 4:
+                    System.out.println("Enter the Name of the person do you wants to delete");
+                    String name = scanner.nextLine();
+                    adressBookImplementation.delete(name);
                     break;
                 default:
                     System.out.println();
