@@ -7,6 +7,6 @@ public interface IAddressBook {
     void delete(String firstName);
     void addMultiplePerson();
     void searchPersonByName(String firstname);
-    void searchPersonByState(String firstname);
-
+    void searchPersonByState(String firstName);
+    void viewByCity(String city);
 }
