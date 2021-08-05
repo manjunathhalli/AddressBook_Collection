@@ -1,6 +1,5 @@
 package com.bridgelabz.collection;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -45,6 +44,40 @@ public class AddressBookImplementation implements IAddressBook {
         }
     }
 
+    /**
+     * Uc3: Ability to edit existing contact person using their name
+     */
+
+    @Override
+    public void edit(String firstName) {
+        for (int i = 0; i < personList.size(); i++) {
+            Person person = personList.get(i);
+
+            System.out.println("Hi " + person.getFirstName() + " please enter your  new Address");
+            String address = scanner.nextLine();
+            person.setAddress(address);
+
+            System.out.println("Hi " + person.getFirstName() + " please enter your  new city");
+            String city = scanner.nextLine();
+            person.setCity(city);
+
+            System.out.println("Hi " + person.getFirstName() + " please enter your  new state");
+            String state = scanner.nextLine();
+            person.setState(state);
+
+            System.out.println("Hi " + person.getFirstName() + " please enter your  new Zip Code");
+            int zip = scanner.nextInt();
+            person.setPincode(zip);
+
+            System.out.println("Hi " + person.getFirstName() + " please enter your  new Phone No");
+            int PhoneNo = scanner.nextInt();
+            person.setMobileNo(PhoneNo);
+
+            System.out.println("Hi " + person.getFirstName() + " you have sucessfully updated");
+        }
+
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to the Address Book Problem");
         AddressBookImplementation adressBookImplementation = new AddressBookImplementation();
@@ -52,7 +85,7 @@ public class AddressBookImplementation implements IAddressBook {
 
         while (condition == true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("1.add" + "\n" + "2.Display");
+            System.out.println("1.add" + "\n" + "2.Display" + "\n" + "3.Edit");
             Scanner option = new Scanner(System.in);
 
             switch (option.nextInt()) {
@@ -61,6 +94,11 @@ public class AddressBookImplementation implements IAddressBook {
                     break;
                 case 2:
                     adressBookImplementation.display();
+                    break;
+                case 3:
+                    System.out.println("Enter the firstName:");
+                    String firstName = scanner.nextLine();
+                    adressBookImplementation.edit(firstName);
                     break;
                 default:
                     System.out.println();
