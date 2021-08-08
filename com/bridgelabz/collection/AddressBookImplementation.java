@@ -3,12 +3,12 @@ package com.bridgelabz.collection;
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 
 public class AddressBookImplementation implements IAddressBook {
-
     private static AddressBookImplementation addressBookImplementation;
     Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<Person>();
@@ -148,7 +148,6 @@ public class AddressBookImplementation implements IAddressBook {
      */
     @Override
     public void viewByCity(String city) {
-        Collection<Person> list;
         List people = (List) personList.stream().filter(person1 -> person1.getFirstName().equalsIgnoreCase(city))
                 .collect(Collectors.toList());
 
@@ -172,6 +171,17 @@ public class AddressBookImplementation implements IAddressBook {
         }
     }
 
+    /**
+     * Uc11: Ability to sort by firstName
+     */
+    @Override
+    public void sortByfirstName() {
+        {
+            Collections.sort(personList, (name1, name2) -> name1.getFirstName().compareTo(name2.getFirstName()));
+            System.out.println(personList);
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to the Address Book Problem");
         AddressBookImplementation adressBookImplementation = new AddressBookImplementation();
@@ -179,9 +189,9 @@ public class AddressBookImplementation implements IAddressBook {
 
         while (condition == true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println(
-                    "1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete" + "\n" + "5.Add MultiplePerson"
-                            + "\n" + "6.SearchByName" + "\n" + "7.SearchByState" + "\n" + "8.viewByCity" + "\n" + "SearchPersonInCity");
+            System.out.println("1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete" + "\n"
+                    + "5.Add MultiplePerson" + "\n" + "6.SearchByName" + "\n" + "7.SearchByState" + "\n"
+                    + "8.viewByCity" + "\n" + "9.SearchPersonInCity" + "\n" + "10.sortByFirstName");
             Scanner option = new Scanner(System.in);
 
             switch (option.nextInt()) {
@@ -224,6 +234,9 @@ public class AddressBookImplementation implements IAddressBook {
                     System.out.println("Enter name");
                     String name1 = scanner.nextLine();
                     addressBookImplementation.searchPersonInCity(name1);
+                    break;
+                case 10:
+                    addressBookImplementation.sortByfirstName();
                     break;
                 default:
                     System.out.println();
