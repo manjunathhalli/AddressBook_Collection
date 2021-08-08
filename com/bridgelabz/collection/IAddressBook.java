@@ -11,4 +11,8 @@ public interface IAddressBook {
     void viewByCity(String city);
     void searchPersonInCity(String firstName);
     void sortByfirstName();
+    void sortByZipCode();
+
+
 }
+
